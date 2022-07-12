@@ -2,45 +2,74 @@
 
 const employees=[];
 
-function employee(ID, name,Department,Level,ImageURL,Salary){
+function employeeinfo(ID, name,Department,Level,ImageURL){
 
     this.ID=ID;
     this.name=name;
     this.Department=Department;
     this.Level=Level;
     this.ImageURL=ImageURL;
-    this.Salary = function(){
-        if (this.Level==="senior"){
-         this.Salary=Math.floor(Math.random() * 2000) + 1500;
-         Salary=this.Salary
-         return Salary;
+    employees.push(this)
+
+}
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min+1) ) + min;
+}
+  
+employeeinfo.prototype.Salary=function(){
+    
+        if ((this.Level)==="senior"){
+         this.Salary=getRndInteger(1500,2000)
+         employees.push(this.Salary)
+         
         }
-        else if(this.Level==="Mid-Senior"){
-            this.Salary=Math.floor(Math.random() * 1500) + 1000; 
-            Salary= this.Salary;
-            return Salary;
+        else if(this.Level ==="Mid-Senior"){
+            this.Salary=getRndInteger(1000,1500)
+            employees.push(this.Salary)
+            
 
         }
         else{
-            this.Salary=Math.floor(Math.random() * 1000) + 500; 
-            Salary=this.Salary;
-            return Salary;
+            this.Salary=getRndInteger(500,1000)
+            
+            employees.push(this.Salary)
+            
         }
+        
 
 
-    };
+    }
+    employeeinfo.prototype.netsalary=function(){
 
+        this.netsalary=Math.floor(this.Salary-(this.Salary * 0.075));
+        employees.push(this.netsalary);
+
+    }
+
+
+    employeeinfo.prototype.printing = function(){
+        document.write(`<p> <br> fullname: ${this.name}: first salary: ${this.Salary} : net salary = ${this.netsalary}</p>`)
 
 }
 
-const employee1= new employee(1000,"GhaziSamer",["Administration"],"senior","../assests/images.png","");
-const employee2= new employee(1001,"Lana Ali",["Finance"],"senior","../assests/images.png","");
-const employee3= new employee(1002,"Tamara Ayoub",["Marketing"],"senior","../assests/images.png","");
-const employee4= new employee(1003,"Safi Walid",["Administration"],"Mid-Senior","../assests/mids.png","");
-const employee5= new employee(1004,"Omar Zaid",["Development"],"senior","../assests/images.png","");
-const employee6= new employee(1005,"Rana Saleh",["Development"],"Junior","../assests/mids.png","");
-const employee7= new employee(1006,"Hadi Ahmad",["Finance"],"Mid-Senior","../assests/images.png","");
-console.log(employee1,employee2,employee3,employee4,employee5,employee6,employee7);
+
+const GhaziSamer = new employeeinfo(1000,"GhaziSamer","Administration","Senior","img","");
+const 	LanaAli = new employeeinfo(1001,"LanaAli","Finance","Senior","img","");
+const  TamaraAyoub= new employeeinfo(1002,"TamaraAyoub","Marketing","Senior","img","");
+const  SafiWalid= new employeeinfo(1003,"SafiWalid","Administration","Mid-Senior","img","");
+const OmarZaid = new employeeinfo(1004,"OmarZaid","Development","Senior","img","");
+const RanaSaleh = new employeeinfo(1005,"RanaSaleh","Development","Junior","img","");
+const  HadiAhmad= new employeeinfo(1006,"HadiAhmad","Finance","Mid-Senior","img","");
+
+console.log(employees);
+
+for( let i=0; i<=employees.length;i++){
+
+    employees[i].Salary();
+    employees[i].netsalary();
+    employees[i].printing();
+}
+
 
 
 
