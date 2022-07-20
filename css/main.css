@@ -19,7 +19,7 @@ position: fixed;
 main{
 
 width: 100%;
-height: 100px;
+height: 300px;
 margin: 5px 0px;
 padding-top: 70px;
 }
@@ -76,3 +76,5 @@ p{
     
 
 }
+ 
+
